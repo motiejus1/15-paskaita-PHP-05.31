@@ -7,9 +7,12 @@
     <title>Clients</title>
 
     <?php require_once("includes.php"); ?>
-
 </head>
 <body>
+    
+</body>
+</html>
+
 <?php 
 
 if(!isset($_COOKIE["prisijungta"])) { 
@@ -26,5 +29,3 @@ if(!isset($_COOKIE["prisijungta"])) {
 }    
     
 ?>
-</body>
-</html>

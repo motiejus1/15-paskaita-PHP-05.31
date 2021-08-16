@@ -7,10 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Document</title>
 
-    <?php require_once("includes.php"); ?>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <style>
         h1 {
             text-align: center;
@@ -90,7 +89,7 @@
                 <label for="password">Password</label>
                 <input class="form-control" type="password" name="password" />
             </div>
-            <a href="register.php">Register here</><br>
+
             <button class="btn btn-primary" type="submit" name="submit">Log In</button>
         </form>
 

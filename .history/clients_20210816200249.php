@@ -6,10 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clients</title>
 
-    <?php require_once("includes.php"); ?>
-
+    <?php require_once()
 </head>
 <body>
+    
+</body>
+</html>
+
 <?php 
 
 if(!isset($_COOKIE["prisijungta"])) { 
@@ -26,5 +29,3 @@ if(!isset($_COOKIE["prisijungta"])) {
 }    
     
 ?>
-</body>
-</html>

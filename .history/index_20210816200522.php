@@ -90,7 +90,7 @@
                 <label for="password">Password</label>
                 <input class="form-control" type="password" name="password" />
             </div>
-            <a href="register.php">Register here</><br>
+
             <button class="btn btn-primary" type="submit" name="submit">Log In</button>
         </form>
 

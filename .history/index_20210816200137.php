@@ -7,9 +7,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Document</title>
 
-    <?php require_once("includes.php"); ?>
+    <?php require_once() ?>
 
     <style>
         h1 {
@@ -90,7 +90,7 @@
                 <label for="password">Password</label>
                 <input class="form-control" type="password" name="password" />
             </div>
-            <a href="register.php">Register here</><br>
+
             <button class="btn btn-primary" type="submit" name="submit">Log In</button>
         </form>
 

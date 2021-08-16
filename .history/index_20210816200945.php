@@ -11,18 +11,27 @@
 
     <?php require_once("includes.php"); ?>
 
-    <style>
-        h1 {
-            text-align: center;
-        }
+    <div class="container">
+        <h1>Klientų valdymo sistema</h1>
+        <form action="index.php" method="get">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input class="form-control" type="text" name="username" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control" type="password" name="password" />
+            </div>
+            <a href="register.php">Register here</><br>
+            <button class="btn btn-primary" type="submit" name="submit">Log In</button>
+        </form>
 
-        .container {
-            position:absolute;
-            top:50%;
-            left:50%;
-            transform: translateY(-50%) translateX(-50%);
-        }
-    </style>
+        <?php if(isset($message)) { ?>
+            <div class="alert alert-danger" role="alert">
+                <?php echo $message; ?>
+            </div>
+        <?php } ?>
+    </div>
 </head>
 <body>
     <?php
