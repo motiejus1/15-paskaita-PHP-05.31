@@ -41,16 +41,15 @@ if(isset($_GET["ID"])) {
         $class="success";
     } else {
         $message = "Kazkas ivyko negerai";
-        $class="danger";
+        
     }
 }
 
 ?>
-<?php if(isset($message)) { ?>
-    <div class="alert alert-<?php echo $class; ?>" role="alert">
-        <?php echo $message; ?>
-    </div>
-<?php } ?>
+
+<div class="alert alert-<?php echo $class; ?>" role="alert">
+                    <?php echo $message; ?>
+</div>
 
 <table class="table table-striped">
   <thead>
@@ -104,7 +103,7 @@ if(isset($_GET["ID"])) {
             
             echo "<td>";
                 echo "<a href='clients.php?ID=".$clients["ID"]."'>Trinti</a><br>";
-                echo "<a href='clientsEdit.php?ID=".$clients["ID"]."'>Redaguoti</a>";
+                echo "<a href='#'>Redaguoti</a>";
             echo "</td>";
         echo "</tr>";
     }

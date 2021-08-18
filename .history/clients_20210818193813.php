@@ -31,27 +31,6 @@ if(!isset($_COOKIE["prisijungta"])) {
 }    
 ?>
 
-<?php 
-
-if(isset($_GET["ID"])) {
-    $id = $_GET["ID"];
-    $sql = "DELETE FROM `klientai` WHERE ID = $id";
-    if(mysqli_query($conn, $sql)) {
-        $message = "Klientas sekmingai istrintas";
-        $class="success";
-    } else {
-        $message = "Kazkas ivyko negerai";
-        $class="danger";
-    }
-}
-
-?>
-<?php if(isset($message)) { ?>
-    <div class="alert alert-<?php echo $class; ?>" role="alert">
-        <?php echo $message; ?>
-    </div>
-<?php } ?>
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -104,7 +83,7 @@ if(isset($_GET["ID"])) {
             
             echo "<td>";
                 echo "<a href='clients.php?ID=".$clients["ID"]."'>Trinti</a><br>";
-                echo "<a href='clientsEdit.php?ID=".$clients["ID"]."'>Redaguoti</a>";
+                echo "<a href='#'>Redaguoti</a>";
             echo "</td>";
         echo "</tr>";
     }
@@ -112,6 +91,8 @@ if(isset($_GET["ID"])) {
 
     //Kiekviena is klientu triname pagal jo ID
     //ID perduoti per GET. Per nuoroda
+
+    if(isset($GET())
     ?>
   </tbody>
 </table>

@@ -104,7 +104,7 @@ if(isset($_GET["ID"])) {
             
             echo "<td>";
                 echo "<a href='clients.php?ID=".$clients["ID"]."'>Trinti</a><br>";
-                echo "<a href='clientsEdit.php?ID=".$clients["ID"]."'>Redaguoti</a>";
+                echo "<a href='clientsEdit.php?ID=".$clients["ID"].">Redaguoti</a>";
             echo "</td>";
         echo "</tr>";
     }
