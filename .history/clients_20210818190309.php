@@ -47,40 +47,17 @@ if(!isset($_COOKIE["prisijungta"])) {
     $sql = "SELECT * FROM `klientai` ORDER BY `ID` DESC"; //uzklausa. 418
     $result = $conn->query($sql); // uzklausos vykdymas
     // 0 - Naujas klientas
-    // 1 - Ilgalaikis klientas
-    // 2 - Neaktyvus klientas
-    // 3 - Nemokus klientas
-    // 4 - Uzsienio(Ne EU) klientas
-    // 5 - Uzsienio(EU) klientas
+    // 1 - 
+    // 2 - 
+    // 3 - 
+    // 4 -
+    // 5 - 
     while($clients = mysqli_fetch_array($result)) {
         echo "<tr>";
             echo "<td>". $clients["ID"]."</td>";
             echo "<td>". $clients["vardas"]."</td>";
             echo "<td>". $clients["pavarde"]."</td>";
-            //ifa/switch
-            switch($clients["teises_id"]) {
-                case 0:
-                    echo "<td>Naujas klientas</td>";     
-                break;
-                case 1:
-                    echo "<td>Ilgalaikis klientas</td>";
-                break;
-                case 2:
-                    echo "<td>Neaktyvus klientas</td>";
-                break;
-                case 3:
-                    echo "<td>Nemokus klientas</td>";
-                break;
-                case 4:
-                    echo "<td>Uzsienio(Ne EU) klientas</td>";
-                break;
-                case 5:
-                    echo "<td>Uzsienio(EU) klientas</td>";
-                break;
-                default: echo "<td>Nepatvirtintas klientas</td>";
-            }    
-
-            
+            echo "<td>". $clients["teises_id"]."</td>";
             echo "<td>";
                 echo "<a href='#'>Trinti</a><br>";
                 echo "<a href='#'>Redaguoti</a>";

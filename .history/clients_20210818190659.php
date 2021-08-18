@@ -58,28 +58,13 @@ if(!isset($_COOKIE["prisijungta"])) {
             echo "<td>". $clients["vardas"]."</td>";
             echo "<td>". $clients["pavarde"]."</td>";
             //ifa/switch
-            switch($clients["teises_id"]) {
+            switch($clients["teises_id"])
                 case 0:
-                    echo "<td>Naujas klientas</td>";     
                 break;
-                case 1:
-                    echo "<td>Ilgalaikis klientas</td>";
-                break;
-                case 2:
-                    echo "<td>Neaktyvus klientas</td>";
-                break;
-                case 3:
-                    echo "<td>Nemokus klientas</td>";
-                break;
-                case 4:
-                    echo "<td>Uzsienio(Ne EU) klientas</td>";
-                break;
-                case 5:
-                    echo "<td>Uzsienio(EU) klientas</td>";
-                break;
-                default: echo "<td>Nepatvirtintas klientas</td>";
-            }    
+                    
 
+
+            echo "<td>". $clients["teises_id"]."</td>";
             
             echo "<td>";
                 echo "<a href='#'>Trinti</a><br>";

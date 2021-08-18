@@ -77,7 +77,7 @@ if(!isset($_COOKIE["prisijungta"])) {
                 case 5:
                     echo "<td>Uzsienio(EU) klientas</td>";
                 break;
-                default: echo "<td>Nepatvirtintas klientas</td>";
+                default: echo "<td>Nemokus klientas</td>";
             }    
 
             
