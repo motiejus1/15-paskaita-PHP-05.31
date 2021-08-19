@@ -61,6 +61,8 @@ if(isset($_GET["ID"])) {
 
 <div class="form-group">
     <select class="form-control" name="rikiavimas_id">
+
+        <?php ?>
         <option value="DESC"> Nuo didžiausio iki mažiausio</option>
         <option value="ASC"> Nuo mažiausio iki didžiausio</option>
     </select>

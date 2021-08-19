@@ -89,11 +89,11 @@ if(isset($_GET["ID"])) {
         $rikiavimas = "DESC";
     }
 
-    $sql = "SELECT * FROM `klientai` ORDER BY `ID` $rikiavimas"; //uzklausa. 418
+    $sql = "SELECT * FROM `klientai` ORDER BY `ID` DESC"; //uzklausa. 418
 
     if(isset($_GET["search"]) && !empty($_GET["search"])) {
         $search = $_GET["search"];
-        $sql = "SELECT * FROM `klientai` WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' ORDER BY `ID` $rikiavimas";
+        $sql = "SELECT * FROM `klientai` WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' ORDER BY `ID` DESC";
     }
 
     $result = $conn->query($sql); // uzklausos vykdymas
