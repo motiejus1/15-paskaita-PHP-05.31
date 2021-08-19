@@ -146,16 +146,9 @@ if(isset($_GET["submit"])) {
                          $sql = "SELECT * FROM klientai_teises";
                          $result = $conn->query($sql);
                         //  $client["teises_id"] - sita kintamaji
-                        // kam jis turi buti lygus is duomenu bazes stulpelio?
-
+                        // kam jis
                          while($clientRights = mysqli_fetch_array($result)) {
-
-                            if($client["teises_id"] == $clientRights["reiksme"] ) {
-                                echo "<option value='".$clientRights["reiksme"]."' selected='true'>";
-                            }  else {
-                                echo "<option value='".$clientRights["reiksme"]."'>";
-                            }  
-                                
+                            echo "<option value='".$clientRights["reiksme"]."'>";
                                 echo $clientRights["pavadinimas"];
                             echo "</option>";
                         }

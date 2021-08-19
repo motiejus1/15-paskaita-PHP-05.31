@@ -127,39 +127,27 @@ if(isset($_GET["submit"])) {
                     //6- Siaures Europos klientai
                     // 3 - kategorijos nebeliko
                     //1
-                        // $select_array = array(
-                        //     "",
-                        //     "",
-                        //     "",
-                        //     "",
-                        //     "",
-                        //     ""
-                        // );
-                        // //1
-                        // $select_array[$client["teises_id"]] = "selected='true'";
+                        $select_array = array(
+                            "",
+                            "",
+                            "",
+                            "",
+                            "",
+                            ""
+                        );
+                        //1
+                        $select_array[$client["teises_id"]] = "selected='true'";
 
                     ?>
 
 
                     <select class="form-control" name="teises_id">
-                        <?php 
-                         $sql = "SELECT * FROM klientai_teises";
-                         $result = $conn->query($sql);
-                        //  $client["teises_id"] - sita kintamaji
-                        // kam jis turi buti lygus is duomenu bazes stulpelio?
-
-                         while($clientRights = mysqli_fetch_array($result)) {
-
-                            if($client["teises_id"] == $clientRights["reiksme"] ) {
-                                echo "<option value='".$clientRights["reiksme"]."' selected='true'>";
-                            }  else {
-                                echo "<option value='".$clientRights["reiksme"]."'>";
-                            }  
-                                
-                                echo $clientRights["pavadinimas"];
-                            echo "</option>";
-                        }
-                        ?>
+                        <option value="teises0" <?php echo $select_array[0]; ?>>Naujas klientas</option>
+                        <option value="teises1" <?php echo $select_array[1]; ?>>Ilgalaikis klientas</option>
+                        <option value="2" <?php echo $select_array[2]; ?>>Neaktyvus klientas</option>
+                        <option value="3" <?php echo $select_array[3]; ?>>Nemokus klientas</option>
+                        <option value="4" <?php echo $select_array[4]; ?>>Uzsienio(Ne EU) klientas</option>
+                        <option value="5" <?php echo $select_array[5]; ?>>Uzsienio(EU) klientas</option>
                     </select>
                 </div>
 

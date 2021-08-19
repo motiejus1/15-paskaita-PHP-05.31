@@ -123,43 +123,18 @@ if(isset($_GET["submit"])) {
                 <div class="form-group">
                     <label for="teises_id">Teisės</label>
                     <!-- <input class="form-control" type="text" name="teises_id" value="<?php echo $client["teises_id"]; ?>"/> -->
-                    <?php //echo $client["teises_id"];//0-5 
-                    //6- Siaures Europos klientai
-                    // 3 - kategorijos nebeliko
-                    //1
-                        // $select_array = array(
-                        //     "",
-                        //     "",
-                        //     "",
-                        //     "",
-                        //     "",
-                        //     ""
-                        // );
-                        // //1
-                        // $select_array[$client["teises_id"]] = "selected='true'";
-
+                    <?php echo $client["teises_id"];//0-5 
+                        "selected='true'"
                     ?>
 
 
                     <select class="form-control" name="teises_id">
-                        <?php 
-                         $sql = "SELECT * FROM klientai_teises";
-                         $result = $conn->query($sql);
-                        //  $client["teises_id"] - sita kintamaji
-                        // kam jis turi buti lygus is duomenu bazes stulpelio?
-
-                         while($clientRights = mysqli_fetch_array($result)) {
-
-                            if($client["teises_id"] == $clientRights["reiksme"] ) {
-                                echo "<option value='".$clientRights["reiksme"]."' selected='true'>";
-                            }  else {
-                                echo "<option value='".$clientRights["reiksme"]."'>";
-                            }  
-                                
-                                echo $clientRights["pavadinimas"];
-                            echo "</option>";
-                        }
-                        ?>
+                        <option value="0">Naujas klientas</option>
+                        <option value="1">Ilgalaikis klientas</option>
+                        <option value="2">Neaktyvus klientas</option>
+                        <option value="3">Nemokus klientas</option>
+                        <option value="4">Uzsienio(Ne EU) klientas</option>
+                        <option value="5">Uzsienio(EU) klientas</option>
                     </select>
                 </div>
 

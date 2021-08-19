@@ -150,11 +150,8 @@ if(isset($_GET["submit"])) {
 
                          while($clientRights = mysqli_fetch_array($result)) {
 
-                            if($client["teises_id"] == $clientRights["reiksme"] ) {
-                                echo "<option value='".$clientRights["reiksme"]."' selected='true'>";
-                            }  else {
-                                echo "<option value='".$clientRights["reiksme"]."'>";
-                            }  
+
+                            echo "<option value='".$clientRights["reiksme"]."'>";
                                 
                                 echo $clientRights["pavadinimas"];
                             echo "</option>";
