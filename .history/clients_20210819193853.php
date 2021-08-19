@@ -15,7 +15,6 @@
 </head>
 <body>
     <div class="container">
-        <?php require_once("includes/menu.php"); ?>
 <?php 
 
 if(!isset($_COOKIE["prisijungta"])) { 
@@ -53,10 +52,6 @@ if(isset($_GET["ID"])) {
     </div>
 <?php } ?>
 
-<?php if(isset($_GET["search"]) && !empty($_GET["search"])) { ?>
-    <a class="btn btn-primary" href="clients.php"> Išvalyti paiešką</a>
-<?php } ?>    
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -69,14 +64,8 @@ if(isset($_GET["ID"])) {
   </thead>
   <tbody>
     <?php 
-    
+
     $sql = "SELECT * FROM `klientai` ORDER BY `ID` DESC"; //uzklausa. 418
-
-    if(isset($_GET["search"]) && !empty($_GET["search"])) {
-        $search = $_GET["search"];
-        $sql = "SELECT * FROM `klientai` WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' ORDER BY `ID` DESC";
-    }
-
     $result = $conn->query($sql); // uzklausos vykdymas
     // 0 - Naujas klientas
     // 1 - Ilgalaikis klientas
@@ -92,16 +81,7 @@ if(isset($_GET["ID"])) {
             //ifa/switch
                 $teises_id = $clients["teises_id"];
                 $sql = "SELECT * FROM klientai_teises WHERE reiksme = $teises_id";
-                $result_teises = $conn->query($sql); //vykdoma uzklausa
 
-                if($result_teises->num_rows == 1) {
-                    $rights = mysqli_fetch_array($result_teises);
-                    echo "<td>";
-                         echo $rights["pavadinimas"];
-                    echo "</td>";
-                } else {
-                    echo "<td>Nepatvirtintas klientas</td>";
-                }
             // switch($clients["teises_id"]) {
             //     case 0:
             //         echo "<td>Naujas klientas</td>";     

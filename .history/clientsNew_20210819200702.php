@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clients Edit</title>
+    <title>Clients New</title>
 
     <?php require_once("includes.php"); ?>
     
@@ -33,8 +33,6 @@
 <body>
 <?php 
 
-//mes pagal ID turetume isvesti visus duomenis i input apie klienta
-//ir naujus duomenis per UPDATE sukelti i duomenu baze
 
 if(!isset($_COOKIE["prisijungta"])) { 
     header("Location: index.php");    

@@ -53,10 +53,6 @@ if(isset($_GET["ID"])) {
     </div>
 <?php } ?>
 
-<?php if(isset($_GET["search"]) && !empty($_GET["search"])) { ?>
-    <a class="btn btn-primary" href="clients.php"> Išvalyti paiešką</a>
-<?php } ?>    
-
 <table class="table table-striped">
   <thead>
     <tr>
@@ -71,12 +67,6 @@ if(isset($_GET["ID"])) {
     <?php 
     
     $sql = "SELECT * FROM `klientai` ORDER BY `ID` DESC"; //uzklausa. 418
-
-    if(isset($_GET["search"]) && !empty($_GET["search"])) {
-        $search = $_GET["search"];
-        $sql = "SELECT * FROM `klientai` WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' ORDER BY `ID` DESC";
-    }
-
     $result = $conn->query($sql); // uzklausos vykdymas
     // 0 - Naujas klientas
     // 1 - Ilgalaikis klientas

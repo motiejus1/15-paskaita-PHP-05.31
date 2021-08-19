@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clients Edit</title>
+    <title>Clients New</title>
 
     <?php require_once("includes.php"); ?>
     
@@ -33,39 +33,13 @@
 <body>
 <?php 
 
-//mes pagal ID turetume isvesti visus duomenis i input apie klienta
-//ir naujus duomenis per UPDATE sukelti i duomenu baze
 
 if(!isset($_COOKIE["prisijungta"])) { 
     header("Location: index.php");    
 }
 
-if(isset($_GET["ID"])) {
-    $id = $_GET["ID"];
-    $sql = "SELECT * FROM klientai WHERE ID = $id";
-
-    //kiek rezultatu gaunam? 1 
-
-    $result = $conn->query($sql);//vykdome uzklausa 
-
-    if($result->num_rows == 1) {
-        //veiksmai
-        $client = mysqli_fetch_array($result);
-        $hideForm = false;
-    
-    } else {
-        //ivyko kazkas blogai
-        // header("clients.php");
-        //header("error.php");
-        //header("createClient.php");
-        //galime paslepti forma
-        $hideForm = true;
-    }
-}
 
 if(isset($_GET["submit"])) {
-    //Turime pasiimti visus kintamuosius
-    //Kokia uzklausa atlikti? UPDATE
     if(isset($_GET["vardas"]) && isset($_GET["pavarde"]) && isset($_GET["teises_id"]) && !empty($_GET["vardas"]) && !empty($_GET["pavarde"]) && !empty($_GET["teises_id"])) {
         $id = $_GET["ID"];
         $vardas = $_GET["vardas"];
@@ -101,7 +75,7 @@ if(isset($_GET["submit"])) {
 ?>
 
 <div class="container">
-        <h1>Vartotojo redagavimas</h1>
+        <h1>Vartotojo kūrimas</h1>
         <?php if($hideForm == false) { ?>
             <form action="clientsEdit.php" method="get">
                 

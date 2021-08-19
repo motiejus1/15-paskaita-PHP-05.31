@@ -40,6 +40,7 @@ if(!isset($_COOKIE["prisijungta"])) {
     header("Location: index.php");    
 }
 
+
 if(isset($_GET["ID"])) {
     $id = $_GET["ID"];
     $sql = "SELECT * FROM klientai WHERE ID = $id";

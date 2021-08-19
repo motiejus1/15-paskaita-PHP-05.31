@@ -53,9 +53,7 @@ if(isset($_GET["ID"])) {
     </div>
 <?php } ?>
 
-<?php if(isset($_GET["search"]) && !empty($_GET["search"])) { ?>
-    <a class="btn btn-primary" href="clients.php"> Išvalyti paiešką</a>
-<?php } ?>    
+
 
 <table class="table table-striped">
   <thead>
