@@ -97,15 +97,13 @@ if(isset($_GET["ID"])) {
 
     if(isset($_GET["search"]) && !empty($_GET["search"])) {
         $search = $_GET["search"];
-        // $sql = "SELECT * FROM `klientai` 
-        // WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' 
-        // ORDER BY `ID` $rikiavimas";
+        $sql = "SELECT * FROM `klientai` 
+        WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' 
+        ORDER BY `ID` $rikiavimas";
 
         $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
         LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
-        
-        WHERE klientai.vardas LIKE '%".$search."%' OR klientai_teises.pavadinimas LIKE '%".$search."%'
-
+        WHERE vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' 
         ORDER BY klientai.ID $rikiavimas";
     }
 

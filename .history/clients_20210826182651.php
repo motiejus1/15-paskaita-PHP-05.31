@@ -89,24 +89,11 @@ if(isset($_GET["ID"])) {
         $rikiavimas = "DESC";
     }
 
-
-    $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
-    LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
-    WHERE 1 
-    ORDER BY klientai.ID $rikiavimas";
+    $sql = "SELECT * FROM `klientai` ORDER BY `ID` $rikiavimas"; //uzklausa. 418 1 uzklausa
 
     if(isset($_GET["search"]) && !empty($_GET["search"])) {
         $search = $_GET["search"];
-        // $sql = "SELECT * FROM `klientai` 
-        // WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' 
-        // ORDER BY `ID` $rikiavimas";
-
-        $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
-        LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
-        
-        WHERE klientai.vardas LIKE '%".$search."%' OR klientai_teises.pavadinimas LIKE '%".$search."%'
-
-        ORDER BY klientai.ID $rikiavimas";
+        $sql = "SELECT * FROM `klientai` WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' ORDER BY `ID` $rikiavimas";
     }
 
     $result = $conn->query($sql); // uzklausos vykdymas
@@ -121,7 +108,42 @@ if(isset($_GET["ID"])) {
             echo "<td>". $clients["ID"]."</td>";
             echo "<td>". $clients["vardas"]."</td>";
             echo "<td>". $clients["pavarde"]."</td>";
-            echo "<td>". $clients["pavadinimas"]."</td>";
+            //ifa/switch
+                $teises_id = $clients["teises_id"];
+                $sql = "SELECT * FROM klientai_teises WHERE reiksme = $teises_id";
+                $result_teises = $conn->query($sql); //vykdoma uzklausa
+
+                if($result_teises->num_rows == 1) {
+                    $rights = mysqli_fetch_array($result_teises);
+                    echo "<td>";
+                         echo $rights["pavadinimas"];
+                    echo "</td>";
+                } else {
+                    echo "<td>Nepatvirtintas klientas</td>";
+                }
+            // switch($clients["teises_id"]) {
+            //     case 0:
+            //         echo "<td>Naujas klientas</td>";     
+            //     break;
+            //     case 1:
+            //         echo "<td>Ilgalaikis klientas</td>";
+            //     break;
+            //     case 2:
+            //         echo "<td>Neaktyvus klientas</td>";
+            //     break;
+            //     case 3:
+            //         echo "<td>Nemokus klientas</td>";
+            //     break;
+            //     case 4:
+            //         echo "<td>Uzsienio(Ne EU) klientas</td>";
+            //     break;
+            //     case 5:
+            //         echo "<td>Uzsienio(EU) klientas</td>";
+            //     break;
+            //     default: echo "<td>Nepatvirtintas klientas</td>";
+            // }    
+
+            
             echo "<td>";
                 echo "<a href='clients.php?ID=".$clients["ID"]."'>Trinti</a><br>";
                 echo "<a href='clientsEdit.php?ID=".$clients["ID"]."'>Redaguoti</a>";

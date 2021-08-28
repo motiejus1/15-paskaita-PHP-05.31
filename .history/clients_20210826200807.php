@@ -95,18 +95,12 @@ if(isset($_GET["ID"])) {
     WHERE 1 
     ORDER BY klientai.ID $rikiavimas";
 
+
+    // $sql = "SELECT * FROM `klientai` ORDER BY `ID` $rikiavimas"; //uzklausa. 418 1 uzklausa
+
     if(isset($_GET["search"]) && !empty($_GET["search"])) {
         $search = $_GET["search"];
-        // $sql = "SELECT * FROM `klientai` 
-        // WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' 
-        // ORDER BY `ID` $rikiavimas";
-
-        $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
-        LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
-        
-        WHERE klientai.vardas LIKE '%".$search."%' OR klientai_teises.pavadinimas LIKE '%".$search."%'
-
-        ORDER BY klientai.ID $rikiavimas";
+        $sql = "SELECT * FROM `klientai` WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' ORDER BY `ID` $rikiavimas";
     }
 
     $result = $conn->query($sql); // uzklausos vykdymas
@@ -121,7 +115,9 @@ if(isset($_GET["ID"])) {
             echo "<td>". $clients["ID"]."</td>";
             echo "<td>". $clients["vardas"]."</td>";
             echo "<td>". $clients["pavarde"]."</td>";
-            echo "<td>". $clients["pavadinimas"]."</td>";
+            echo "<td>". $clients[""]."</td>";
+
+            
             echo "<td>";
                 echo "<a href='clients.php?ID=".$clients["ID"]."'>Trinti</a><br>";
                 echo "<a href='clientsEdit.php?ID=".$clients["ID"]."'>Redaguoti</a>";
