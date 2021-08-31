@@ -11,6 +11,7 @@
     <title>Clients</title>
 
     <?php require_once("includes.php"); ?>
+
 </head>
 <body>
     <div class="container">

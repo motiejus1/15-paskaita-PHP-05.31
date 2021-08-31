@@ -11,6 +11,7 @@
     <title>Clients</title>
 
     <?php require_once("includes.php"); ?>
+
 </head>
 <body>
     <div class="container">
@@ -47,6 +48,17 @@ if(isset($_GET["ID"])) {
 
 ?>
 <?php if(isset($message)) { ?>
+
+    <script>
+    $(function() {
+        $(".alert")
+            .hide() // hides it first, or style it with 'display: none;' instead
+            .fadeIn(300) // fades it in
+            .delay(3260) // (optionally) waits
+            .fadeOut(300); // (optionally) fades it out
+    });
+</script>
+
     <div class="alert alert-<?php echo $class; ?>" role="alert">
         <?php echo $message; ?>
     </div>
@@ -134,6 +146,6 @@ if(isset($_GET["ID"])) {
     ?>
   </tbody>
 </table>
-</div>   
+    </div>
 </body>
 </html>

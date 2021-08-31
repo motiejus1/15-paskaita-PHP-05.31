@@ -11,6 +11,7 @@
     <title>Clients</title>
 
     <?php require_once("includes.php"); ?>
+
 </head>
 <body>
     <div class="container">
@@ -134,6 +135,6 @@ if(isset($_GET["ID"])) {
     ?>
   </tbody>
 </table>
-</div>   
+    </div>
 </body>
 </html>

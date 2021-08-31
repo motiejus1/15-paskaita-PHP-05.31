@@ -11,6 +11,7 @@
     <title>Clients</title>
 
     <?php require_once("includes.php"); ?>
+
 </head>
 <body>
     <div class="container">
@@ -47,7 +48,7 @@ if(isset($_GET["ID"])) {
 
 ?>
 <?php if(isset($message)) { ?>
-    <div class="alert alert-<?php echo $class; ?>" role="alert">
+    <div style="display:none" class="alert alert-<?php echo $class; ?>" role="alert">
         <?php echo $message; ?>
     </div>
 <?php } ?>
@@ -134,6 +135,7 @@ if(isset($_GET["ID"])) {
     ?>
   </tbody>
 </table>
-</div>   
+</div>
+<script src="assets/js/main.js"></script>    
 </body>
 </html>

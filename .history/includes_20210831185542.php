@@ -10,8 +10,7 @@ echo '
 ';
 ?>
 <style>
-    .alert {
-        display:none;
-    }
 
+
+    
 </style>
