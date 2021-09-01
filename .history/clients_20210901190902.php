@@ -87,8 +87,8 @@ if(isset($_GET["ID"])) {
                          $result = $conn->query($sql);
 
                          while($clientRights = mysqli_fetch_array($result)) {
-                            if(isset($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] == $clientRights["reiksme"] ) {
-                                echo "<option value='".$clientRights["reiksme"]."' selected='true'>";
+                            if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
+                                echo "<option value='".$clientRights["reiksme"]."'>";
                             } else  {
                                 echo "<option value='".$clientRights["reiksme"]."'>";
                             }

@@ -76,22 +76,17 @@ if(isset($_GET["ID"])) {
         <select class="form-control" name="filtravimas_id">
 
 
-<?php if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {?>
-                <option value="default">Rodyti visus</option>
-<?php } else {?>
+                <?php
+                    if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
+                    }
+                ?>
                 <option value="default" selected="true">Rodyti visus</option>
-<?php } ?>    
-
                         <?php 
                          $sql = "SELECT * FROM klientai_teises";
                          $result = $conn->query($sql);
 
                          while($clientRights = mysqli_fetch_array($result)) {
-                            if(isset($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] == $clientRights["reiksme"] ) {
-                                echo "<option value='".$clientRights["reiksme"]."' selected='true'>";
-                            } else  {
-                                echo "<option value='".$clientRights["reiksme"]."'>";
-                            }
+                            echo "<option value='".$clientRights["reiksme"]."'>";
                                 echo $clientRights["pavadinimas"];
                             echo "</option>";
                         }

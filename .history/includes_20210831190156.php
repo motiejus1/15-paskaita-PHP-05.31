@@ -10,10 +10,16 @@ echo '
 ';
 ?>
 
-
+<style> 
 
 <style>
     .alert {
         display:none;
     }
+
+    .alert {
+        /*display: block;*/
+    }
+
+
 </style>

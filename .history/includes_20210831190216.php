@@ -10,10 +10,22 @@ echo '
 ';
 ?>
 
+<style>Pirmas failas  .alert {
+        display:none;
+    }
 
+<style>    .alert {
+        /*display: block;*/
+    }
 
 <style>
     .alert {
         display:none;
     }
+
+    .alert {
+        /*display: block;*/
+    }
+
+
 </style>

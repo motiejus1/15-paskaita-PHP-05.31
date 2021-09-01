@@ -74,24 +74,13 @@ if(isset($_GET["ID"])) {
         <h3>Filtravimas</h3>
         <form action="clients.php" method="get">
         <select class="form-control" name="filtravimas_id">
-
-
-<?php if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {?>
-                <option value="default">Rodyti visus</option>
-<?php } else {?>
                 <option value="default" selected="true">Rodyti visus</option>
-<?php } ?>    
-
                         <?php 
                          $sql = "SELECT * FROM klientai_teises";
                          $result = $conn->query($sql);
 
                          while($clientRights = mysqli_fetch_array($result)) {
-                            if(isset($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] == $clientRights["reiksme"] ) {
-                                echo "<option value='".$clientRights["reiksme"]."' selected='true'>";
-                            } else  {
-                                echo "<option value='".$clientRights["reiksme"]."'>";
-                            }
+                            echo "<option value='".$clientRights["reiksme"]."'>";
                                 echo $clientRights["pavadinimas"];
                             echo "</option>";
                         }
@@ -100,7 +89,7 @@ if(isset($_GET["ID"])) {
                 <button class="btn btn-primary" name="filtruoti" type="submit">Filtruoti</button>            
         </form>
 
-        <?php   if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") { ?>
+        <?php   if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"])) { ?>
             <a class="btn btn-primary" href="clients.php">Išvalyti filtrą</a>
         <?php } ?>
     </div>
@@ -125,7 +114,7 @@ if(isset($_GET["ID"])) {
     
     
 
-    if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
+    if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) || $_GET["filtravimas_id"] != "default") {
         $filtravimas = "klientai.teises_id =" .$_GET["filtravimas_id"];
     } else {
         $filtravimas = 1;

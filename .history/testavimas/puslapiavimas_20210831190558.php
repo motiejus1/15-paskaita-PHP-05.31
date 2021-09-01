@@ -40,12 +40,7 @@
         ";
 
         $result = $conn->query($sql);
-
-        //mysqli_fetch_array - duomenu bazes iraso pavercia i masyva
-
-        // $client1 = mysqli_fetch_array($result); //moka suskaiciuoti kiek isviso yra eiluciu/irasu
         
-
         while($clients = mysqli_fetch_array($result)) {
             echo "<tr>";
                 echo "<td>". $clients["ID"]."</td>";

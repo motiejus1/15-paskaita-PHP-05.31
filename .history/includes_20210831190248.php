@@ -16,4 +16,10 @@ echo '
     .alert {
         display:none;
     }
+
+    .alert {
+        display: block;
+    }
+
+
 </style>

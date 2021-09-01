@@ -9,11 +9,14 @@ echo '
 <script src="assets/js/main.js"></script> 
 ';
 ?>
-
-
-
 <style>
     .alert {
         display:none;
     }
+
+    .alert {
+        display: block;
+    }
+
+
 </style>

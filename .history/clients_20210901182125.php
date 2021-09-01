@@ -73,36 +73,11 @@ if(isset($_GET["ID"])) {
     <div class="col-lg-6 col-md-9">
         <h3>Filtravimas</h3>
         <form action="clients.php" method="get">
-        <select class="form-control" name="filtravimas_id">
-
-
-<?php if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {?>
-                <option value="default">Rodyti visus</option>
-<?php } else {?>
-                <option value="default" selected="true">Rodyti visus</option>
-<?php } ?>    
-
-                        <?php 
-                         $sql = "SELECT * FROM klientai_teises";
-                         $result = $conn->query($sql);
-
-                         while($clientRights = mysqli_fetch_array($result)) {
-                            if(isset($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] == $clientRights["reiksme"] ) {
-                                echo "<option value='".$clientRights["reiksme"]."' selected='true'>";
-                            } else  {
-                                echo "<option value='".$clientRights["reiksme"]."'>";
-                            }
-                                echo $clientRights["pavadinimas"];
-                            echo "</option>";
-                        }
-                        ?>
-                    </select>
-                <button class="btn btn-primary" name="filtruoti" type="submit">Filtruoti</button>            
+            <?php
+            //teises_id
+            //
+            ?>
         </form>
-
-        <?php   if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") { ?>
-            <a class="btn btn-primary" href="clients.php">Išvalyti filtrą</a>
-        <?php } ?>
     </div>
 </div>   
 
@@ -122,14 +97,7 @@ if(isset($_GET["ID"])) {
     
     
     // Filtravimas
-    
-    
 
-    if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
-        $filtravimas = "klientai.teises_id =" .$_GET["filtravimas_id"];
-    } else {
-        $filtravimas = 1;
-    }
 
     if(isset($_GET["rikiavimas_id"]) && !empty($_GET["rikiavimas_id"])) {
         $rikiavimas = $_GET["rikiavimas_id"];
@@ -140,11 +108,14 @@ if(isset($_GET["ID"])) {
 
     $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
     LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
-    WHERE $filtravimas
+    WHERE 1 
     ORDER BY klientai.ID $rikiavimas";
 
     if(isset($_GET["search"]) && !empty($_GET["search"])) {
         $search = $_GET["search"];
+        // $sql = "SELECT * FROM `klientai` 
+        // WHERE `vardas` LIKE '%".$search."%' OR `pavarde` LIKE '%".$search."%' 
+        // ORDER BY `ID` $rikiavimas";
 
         $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
         LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
