@@ -64,7 +64,7 @@ if(isset($_GET["ID"])) {
 
         <select class="form-control" name="rikiuoti_pagal">
             <option value="1">ID</option>
-            <option value="2">Kliento vardas</option>
+            <option value="klientai.ID">Kliento vardas</option>
             <option value="3">Kliento pavardė</option>
             <option value="4">Kliento teisės</option>
         </select>

@@ -132,20 +132,8 @@ if(isset($_GET["ID"])) {
     if(isset($_GET["rikiuoti_pagal"]) && !empty($_GET["rikiuoti_pagal"])) {
          $rikiuoti_pagal = $_GET["rikiavimas_pagal"];
     } else {
-         $rikiuoti_pagal = 1;
-    }
-
-    switch($rikiuoti_pagal) {
-        case 1: $rikiuoti_pagal = "klientai.ID";
-        break;
-        case 2: $rikiuoti_pagal = "klientai.vardas";
-        break;
-        case 3: $rikiuoti_pagal = "klientai.pavarde";
-        break;
-        case 4: $rikiuoti_pagal = "klientai_teises.pavadinimas";
-        break;
-        default: $rikiuoti_pagal = "klientai.ID";
-    }
+         $rikiuoti_pagal = "klientai.ID";
+    }        
 
     if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
         $filtravimas = "klientai.teises_id =" .$_GET["filtravimas_id"];

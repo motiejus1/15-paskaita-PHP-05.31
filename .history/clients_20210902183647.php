@@ -58,25 +58,30 @@ if(isset($_GET["ID"])) {
 
 
 <div class="row">
-    <div class="col-lg-12 col-md-12">
-        <h3>Filtravimas ir rikiaviamas</h3>
+    <div class="col-lg-6 col-md-3">
+        <h3>Rikiavimas</h3>
         <form action="clients.php" method="get">
-
-        <select class="form-control" name="rikiuoti_pagal">
-            <option value="1">ID</option>
-            <option value="2">Kliento vardas</option>
-            <option value="3">Kliento pavardė</option>
-            <option value="4">Kliento teisės</option>
-        </select>
+            <div class="form-group">
+                <select class="form-control" name="rikiavimas_id">
+                    <option value="DESC"> Nuo didžiausio iki mažiausio</option>
+                    <option value="ASC"> Nuo mažiausio iki didžiausio</option>
+                </select>
+                <button class="btn btn-primary" name="rikiuoti" type="submit">Rikiuoti</button>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-6 col-md-9">
+        <h3>Filtravimas</h3>
+        <form action="clients.php" method="get">
 
         <select class="form-control" name="rikiavimas_id">
                     <?php if((isset($_GET["rikiavimas_id"]) && $_GET["rikiavimas_id"] == "DESC") || !isset($_GET["rikiavimas_id"]) ) {  ?>
                         <option value="DESC" selected="true"> Nuo didžiausio iki mažiausio</option>
                         <option value="ASC"> Nuo mažiausio iki didžiausio</option>
-                    <?php } else {?>
-                        <option value="DESC"> Nuo didžiausio iki mažiausio</option>
-                        <option value="ASC" selected="true"> Nuo mažiausio iki didžiausio</option>
-                    <?php } ?>    
+                    <?php } //else {?>
+                        <!-- <option value="DESC"> Nuo didžiausio iki mažiausio</option>
+                        <option value="ASC" selected="true"> Nuo mažiausio iki didžiausio</option> -->
+                    <?php //} ?>    
         </select>
 
         <select class="form-control" name="filtravimas_id">
@@ -103,7 +108,7 @@ if(isset($_GET["ID"])) {
                         }
                         ?>
                     </select>
-                <button class="btn btn-primary" name="filtruoti" type="submit">Vykdyti</button>            
+                <button class="btn btn-primary" name="filtruoti" type="submit">Filtruoti</button>            
         </form>
 
         <?php   if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") { ?>
@@ -129,24 +134,6 @@ if(isset($_GET["ID"])) {
     //1. Sujungti dvi formas. T.y is musu turimu dvieju formu padaryti tik viena
     //2. Abejose formose tureti pasleptus rikiavimas_id ir filtravimas_id input laukelius.
     
-    if(isset($_GET["rikiuoti_pagal"]) && !empty($_GET["rikiuoti_pagal"])) {
-         $rikiuoti_pagal = $_GET["rikiavimas_pagal"];
-    } else {
-         $rikiuoti_pagal = 1;
-    }
-
-    switch($rikiuoti_pagal) {
-        case 1: $rikiuoti_pagal = "klientai.ID";
-        break;
-        case 2: $rikiuoti_pagal = "klientai.vardas";
-        break;
-        case 3: $rikiuoti_pagal = "klientai.pavarde";
-        break;
-        case 4: $rikiuoti_pagal = "klientai_teises.pavadinimas";
-        break;
-        default: $rikiuoti_pagal = "klientai.ID";
-    }
-
     if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
         $filtravimas = "klientai.teises_id =" .$_GET["filtravimas_id"];
     } else {
@@ -163,7 +150,7 @@ if(isset($_GET["ID"])) {
     $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
     LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
     WHERE $filtravimas
-    ORDER BY $rikiuoti_pagal $rikiavimas";
+    ORDER BY klientai.ID $rikiavimas";
 
     if(isset($_GET["search"]) && !empty($_GET["search"])) {
         $search = $_GET["search"];

@@ -144,7 +144,6 @@ if(isset($_GET["ID"])) {
         break;
         case 4: $rikiuoti_pagal = "klientai_teises.pavadinimas";
         break;
-        default: $rikiuoti_pagal = "klientai.ID";
     }
 
     if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {

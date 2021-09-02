@@ -136,15 +136,8 @@ if(isset($_GET["ID"])) {
     }
 
     switch($rikiuoti_pagal) {
-        case 1: $rikiuoti_pagal = "klientai.ID";
-        break;
-        case 2: $rikiuoti_pagal = "klientai.vardas";
-        break;
-        case 3: $rikiuoti_pagal = "klientai.pavarde";
-        break;
-        case 4: $rikiuoti_pagal = "klientai_teises.pavadinimas";
-        break;
-        default: $rikiuoti_pagal = "klientai.ID";
+        case 1: $rikiuoti_pagal = "klientai.ID"
+        
     }
 
     if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {

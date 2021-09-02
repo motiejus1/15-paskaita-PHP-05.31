@@ -63,10 +63,7 @@ if(isset($_GET["ID"])) {
         <form action="clients.php" method="get">
 
         <select class="form-control" name="rikiuoti_pagal">
-            <option value="1">ID</option>
-            <option value="2">Kliento vardas</option>
-            <option value="3">Kliento pavardė</option>
-            <option value="4">Kliento teisės</option>
+            <option >
         </select>
 
         <select class="form-control" name="rikiavimas_id">
@@ -130,22 +127,10 @@ if(isset($_GET["ID"])) {
     //2. Abejose formose tureti pasleptus rikiavimas_id ir filtravimas_id input laukelius.
     
     if(isset($_GET["rikiuoti_pagal"]) && !empty($_GET["rikiuoti_pagal"])) {
-         $rikiuoti_pagal = $_GET["rikiavimas_pagal"];
+        // $rikiuoti_pagal = $_GET["rikiavimas_id"];
     } else {
-         $rikiuoti_pagal = 1;
-    }
-
-    switch($rikiuoti_pagal) {
-        case 1: $rikiuoti_pagal = "klientai.ID";
-        break;
-        case 2: $rikiuoti_pagal = "klientai.vardas";
-        break;
-        case 3: $rikiuoti_pagal = "klientai.pavarde";
-        break;
-        case 4: $rikiuoti_pagal = "klientai_teises.pavadinimas";
-        break;
-        default: $rikiuoti_pagal = "klientai.ID";
-    }
+         $rikiuoti_pagal = "klientai.ID";
+    }        
 
     if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
         $filtravimas = "klientai.teises_id =" .$_GET["filtravimas_id"];
