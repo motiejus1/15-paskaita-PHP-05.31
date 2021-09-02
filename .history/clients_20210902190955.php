@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="lt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -67,34 +67,13 @@ if(isset($_GET["ID"])) {
                 $sql = "SELECT * FROM `klientai_rikiavimas`";
                 $result = $conn->query($sql);
 
-                $rikiavimo_stulpelis = array();
-                
-                $skaitiklis = 1;
-
-
-                //3 irasai
-                //3 kartus
-                //pacios pirmos reiksmes
-                while($sortColumns = mysqli_fetch_array($result)) {
-
-                    if($skaitiklis == 1) {
-                        $numatytoji_reiksme = $sortColumns["ID"]; //paskutine reiksme
-                    }
-                    
-                    
-                    if(isset($_GET["rikiuoti_pagal"]) && $_GET["rikiuoti_pagal"] == $sortColumns["ID"]) {
-                        echo "<option value='".$sortColumns["ID"]."' selected='true'>".$sortColumns["rikiavimo_pavadinimas"]."</option>";
-                    } else {
-                        echo "<option value='".$sortColumns["ID"]."'>".$sortColumns["rikiavimo_pavadinimas"]."</option>";    
-                    }
-                    
-                    $rikiavimo_stulpelis[$sortColumns["ID"]] =  $sortColumns["rikiavimo_stulpelis"];
-                    
-                    $skaitiklis++;
-                }
-
-                // var_dump($rikiavimo_stulpelis);
+                while($ = mysqli_fetch_array($result)) {
+            
             ?>
+            <option value="1">ID</option>
+            <option value="2">Kliento vardas</option>
+            <option value="3">Kliento pavardė</option>
+            <option value="4">Kliento teisės</option>
         </select>
 
         <select class="form-control" name="rikiavimas_id">
@@ -158,22 +137,22 @@ if(isset($_GET["ID"])) {
     //2. Abejose formose tureti pasleptus rikiavimas_id ir filtravimas_id input laukelius.
     
     if(isset($_GET["rikiuoti_pagal"]) && !empty($_GET["rikiuoti_pagal"])) {
-         $rikiuoti_pagal = $rikiavimo_stulpelis[$_GET["rikiuoti_pagal"]];
+         $rikiuoti_pagal = $_GET["rikiuoti_pagal"];
     } else {
-         $rikiuoti_pagal = $rikiavimo_stulpelis[$numatytoji_reiksme];
+         $rikiuoti_pagal = 1;
     }
 
-    // switch($rikiuoti_pagal) {
-    //     case 1: $rikiuoti_pagal = "klientai.ID";
-    //     break;
-    //     case 2: $rikiuoti_pagal = "klientai.vardas";
-    //     break;
-    //     case 3: $rikiuoti_pagal = "klientai.pavarde";
-    //     break;
-    //     case 4: $rikiuoti_pagal = "klientai_teises.pavadinimas";
-    //     break;
-    //     default: $rikiuoti_pagal = "klientai.ID";
-    // }
+    switch($rikiuoti_pagal) {
+        case 1: $rikiuoti_pagal = "klientai.ID";
+        break;
+        case 2: $rikiuoti_pagal = "klientai.vardas";
+        break;
+        case 3: $rikiuoti_pagal = "klientai.pavarde";
+        break;
+        case 4: $rikiuoti_pagal = "klientai_teises.pavadinimas";
+        break;
+        default: $rikiuoti_pagal = "klientai.ID";
+    }
 
     if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
         $filtravimas = "klientai.teises_id =" .$_GET["filtravimas_id"];

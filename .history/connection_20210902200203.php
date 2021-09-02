@@ -13,7 +13,7 @@ if (!$conn ) {
   die("Failed to connect to MySQL: " . mysqli_connect_error());
 }
 
-mysqli_set_charset($conn,"utf8");
+mysqli_set_charset($conn,"utf8")
 // else {
     // echo "Prisijungimas ivyko sekmingai";
 // }

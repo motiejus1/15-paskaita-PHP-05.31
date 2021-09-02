@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="lt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -71,23 +71,13 @@ if(isset($_GET["ID"])) {
                 
                 $skaitiklis = 1;
 
-
-                //3 irasai
-                //3 kartus
-                //pacios pirmos reiksmes
                 while($sortColumns = mysqli_fetch_array($result)) {
 
-                    if($skaitiklis == 1) {
-                        $numatytoji_reiksme = $sortColumns["ID"]; //paskutine reiksme
-                    }
-                    
-                    
-                    if(isset($_GET["rikiuoti_pagal"]) && $_GET["rikiuoti_pagal"] == $sortColumns["ID"]) {
-                        echo "<option value='".$sortColumns["ID"]."' selected='true'>".$sortColumns["rikiavimo_pavadinimas"]."</option>";
-                    } else {
-                        echo "<option value='".$sortColumns["ID"]."'>".$sortColumns["rikiavimo_pavadinimas"]."</option>";    
-                    }
-                    
+                    // if($skaitiklis == 1) {
+                        $numatytoji_reiksme = $sortColumns["ID"]; //
+                    // }
+
+                    echo "<option value='".$sortColumns["ID"]."'>".$sortColumns["rikiavimo_pavadinimas"]."</option>";
                     $rikiavimo_stulpelis[$sortColumns["ID"]] =  $sortColumns["rikiavimo_stulpelis"];
                     
                     $skaitiklis++;

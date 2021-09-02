@@ -3,7 +3,7 @@
 ?>
 
 <!DOCTYPE html>
-<html lang="lt">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -68,29 +68,9 @@ if(isset($_GET["ID"])) {
                 $result = $conn->query($sql);
 
                 $rikiavimo_stulpelis = array();
-                
-                $skaitiklis = 1;
-
-
-                //3 irasai
-                //3 kartus
-                //pacios pirmos reiksmes
                 while($sortColumns = mysqli_fetch_array($result)) {
-
-                    if($skaitiklis == 1) {
-                        $numatytoji_reiksme = $sortColumns["ID"]; //paskutine reiksme
-                    }
-                    
-                    
-                    if(isset($_GET["rikiuoti_pagal"]) && $_GET["rikiuoti_pagal"] == $sortColumns["ID"]) {
-                        echo "<option value='".$sortColumns["ID"]."' selected='true'>".$sortColumns["rikiavimo_pavadinimas"]."</option>";
-                    } else {
-                        echo "<option value='".$sortColumns["ID"]."'>".$sortColumns["rikiavimo_pavadinimas"]."</option>";    
-                    }
-                    
+                    echo "<option value='".$sortColumns["ID"]."'>".$sortColumns["rikiavimo_pavadinimas"]."</option>";
                     $rikiavimo_stulpelis[$sortColumns["ID"]] =  $sortColumns["rikiavimo_stulpelis"];
-                    
-                    $skaitiklis++;
                 }
 
                 // var_dump($rikiavimo_stulpelis);
@@ -158,9 +138,9 @@ if(isset($_GET["ID"])) {
     //2. Abejose formose tureti pasleptus rikiavimas_id ir filtravimas_id input laukelius.
     
     if(isset($_GET["rikiuoti_pagal"]) && !empty($_GET["rikiuoti_pagal"])) {
-         $rikiuoti_pagal = $rikiavimo_stulpelis[$_GET["rikiuoti_pagal"]];
+         $rikiuoti_pagal = $rik$_GET["rikiuoti_pagal"];
     } else {
-         $rikiuoti_pagal = $rikiavimo_stulpelis[$numatytoji_reiksme];
+         $rikiuoti_pagal = 1;
     }
 
     // switch($rikiuoti_pagal) {
