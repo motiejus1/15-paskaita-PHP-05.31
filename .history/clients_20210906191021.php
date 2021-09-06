@@ -241,6 +241,7 @@ if(isset($_GET["ID"])) {
         $sql = "SELECT CEILING(COUNT(ID)/30) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai 
         FROM klientai
         WHERE $filtravimas
+        ORDER BY $rikiuoti_pagal $rikiavimas
         ";
         $result = $conn->query($sql);  
         //Kiek irasu grazina sita uzklausa?

@@ -237,11 +237,8 @@ if(isset($_GET["ID"])) {
         // AS komanda - stulpelio pervadinimas
         //FLOOR - grindys = 15.6 = 15
         //CEILING - lubos = 15.1 = 16
-        //visa klientu skaiciu: 391/30 = puslapiu skaicius
-        $sql = "SELECT CEILING(COUNT(ID)/30) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai 
-        FROM klientai
-        WHERE $filtravimas
-        ";
+        //visa klientu skaiciu: 400/15 = puslapiu skaicius
+        $sql = "SELECT CEILING(COUNT(ID)/30) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai FROM klientai";
         $result = $conn->query($sql);  
         //Kiek irasu grazina sita uzklausa?
         //1 irasas

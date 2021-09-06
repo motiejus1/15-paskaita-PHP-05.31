@@ -232,45 +232,7 @@ if(isset($_GET["ID"])) {
   </tbody>
 </table>
 
-<?php
-        // 30 irasu viename puslapyje
-        // AS komanda - stulpelio pervadinimas
-        //FLOOR - grindys = 15.6 = 15
-        //CEILING - lubos = 15.1 = 16
-        //visa klientu skaiciu: 391/30 = puslapiu skaicius
-        $sql = "SELECT CEILING(COUNT(ID)/30) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai 
-        FROM klientai
-        WHERE $filtravimas
-        ";
-        $result = $conn->query($sql);  
-        //Kiek irasu grazina sita uzklausa?
-        //1 irasas
-        if($result->num_rows == 1) { 
-            $clients_total_pages = mysqli_fetch_array($result);
-            // var_dump($clients_total_pages);
-            
-            for($i = 1; $i <= intval($clients_total_pages["puslapiu_skaicius"]); $i++) {
-                //Ar tikrai mes $i turim perduot?
-                echo "<a class='btn btn-primary' href='clients.php?page-limit=$i'>";
-                    echo $i; //puslapio numeris
-                    echo " ";
-                echo "</a>";
-            }
-            
-            echo "<p>";
-            echo "Is viso puslapiu: ";
-            echo $clients_total_pages["puslapiu_skaicius"];
-            echo "</p>";
 
-            echo "<p>";
-            echo "Is viso klientu: ";
-             echo $clients_total_pages["viso_klientai"];
-            echo "</p>";
-        }
-        else {
-            echo "Nepavyko suskaiciuoti klientu";
-        }
-    ?>
 
 </div>
 
