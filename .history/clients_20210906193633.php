@@ -155,11 +155,10 @@ if(isset($_GET["ID"])) {
   <tbody>
     <?php
 
-    $clients_count = 3;
-    $pagination_url = "";        
+            
 
     if(isset($_GET["page-limit"])) {
-        $page_limit = $_GET["page-limit"] * $clients_count - $clients_count;    
+        $page_limit = $_GET["page-limit"] * 30 - 30;    
     } else {
         $page_limit = 0;    
     }        
@@ -169,7 +168,6 @@ if(isset($_GET["ID"])) {
     
     if(isset($_GET["rikiuoti_pagal"]) && !empty($_GET["rikiuoti_pagal"])) {
          $rikiuoti_pagal = $rikiavimo_stulpelis[$_GET["rikiuoti_pagal"]];
-         $pagination_url .= "&rikiuoti_pagal=". $_GET["rikiuoti_pagal"];
     } else {
          $rikiuoti_pagal = $rikiavimo_stulpelis[$numatytoji_reiksme];
     }
@@ -187,17 +185,13 @@ if(isset($_GET["ID"])) {
     // }
 
     if(isset($_GET["filtravimas_id"]) && !empty($_GET["filtravimas_id"]) && $_GET["filtravimas_id"] != "default") {
-        //zino, kad filtravimas yra atliekamas
         $filtravimas = "klientai.teises_id =" .$_GET["filtravimas_id"];
-        $pagination_url .= "&filtravimas_id=". $_GET["filtravimas_id"];
     } else {
-        // kad nera jokio filtro
         $filtravimas = 1;
     }
 
     if(isset($_GET["rikiavimas_id"]) && !empty($_GET["rikiavimas_id"])) {
         $rikiavimas = $_GET["rikiavimas_id"];
-        $pagination_url .= "&rikiavimas_id=". $_GET["rikiavimas_id"];
     } else {
         $rikiavimas = "DESC";
     }
@@ -206,9 +200,7 @@ if(isset($_GET["ID"])) {
     $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
     LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
     WHERE $filtravimas
-    ORDER BY $rikiuoti_pagal $rikiavimas
-    LIMIT $page_limit , $clients_count 
-    ";
+    ORDER BY $rikiuoti_pagal $rikiavimas";
 
     if(isset($_GET["search"]) && !empty($_GET["search"])) {
         $search = $_GET["search"];
@@ -216,12 +208,9 @@ if(isset($_GET["ID"])) {
         $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
         LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
         
-        WHERE klientai.vardas LIKE '%".$search."%' OR klientai.pavarde 
-        LIKE '%".$search."%' AND $filtravimas
-        ORDER BY $rikiuoti_pagal $rikiavimas
-        LIMIT $page_limit , $clients_count 
-        ";
-        
+        WHERE klientai.vardas LIKE '%".$search."%' OR klientai_teises.pavadinimas LIKE '%".$search."%'
+
+        ORDER BY klientai.ID $rikiavimas";
     }
 
     $result = $conn->query($sql); // uzklausos vykdymas
@@ -257,16 +246,9 @@ if(isset($_GET["ID"])) {
         //FLOOR - grindys = 15.6 = 15
         //CEILING - lubos = 15.1 = 16
         //visa klientu skaiciu: 391/30 = puslapiu skaicius
-        if(isset($_GET["search"]) && !empty($_GET["search"])) {
-            $page_filtering = "klientai.vardas LIKE '%".$search."%' OR klientai.pavarde 
-            LIKE '%".$search."%' AND $filtravimas";
-        } else {
-            $page_filtering = $filtravimas;
-        }
-        
-        $sql = "SELECT CEILING(COUNT(ID)/$clients_count) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai 
+        $sql = "SELECT CEILING(COUNT(ID)/30) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai 
         FROM klientai
-        WHERE $page_filtering
+        WHERE $filtravimas
         ";
         $result = $conn->query($sql);  
         //Kiek irasu grazina sita uzklausa?
@@ -277,39 +259,14 @@ if(isset($_GET["ID"])) {
             
             for($i = 1; $i <= intval($clients_total_pages["puslapiu_skaicius"]); $i++) {
                 //Ar tikrai mes $i turim perduot?
-                //rikiuoti_pagal=15&
-                //rikiavimas_id=DESC&
-                //filtravimas_id=4
-
-                // 1 2 3 4 ...
-                //$_GET["page-limit"] = 1 iki tiek puslapiu kiek turim
-
-                if(!isset($_GET["page-limit"]) && $i==1) {
-                    echo "<a class='btn btn-primary active' href='clients.php?page-limit=$i$pagination_url'>";
-                } else if((isset($_GET["page-limit"]) && $_GET["page-limit"] == $i) )
-                {
-                    echo "<a class='btn btn-primary active' href='clients.php?page-limit=$i$pagination_url'>";
-                } else {
-                    echo "<a class='btn btn-primary' href='clients.php?page-limit=$i$pagination_url'>";
-                }
-                echo $i; //puslapio numeris
+                echo "<a class='btn btn-primary' href='clients.php?page-limit=$i'>";
+                    echo $i; //puslapio numeris
                     echo " ";
                 echo "</a>";
             }
             
             echo "<p>";
             echo "Is viso puslapiu: ";
-            echo $clients_total_pages["puslapiu_skaicius"];
-            echo "</p>";
-
-            echo "<p>";
-            if (isset($_GET["page-limit"])) {
-                echo $_GET["page-limit"];
-            } else {
-                echo "1";
-            }
-            
-            echo " iš ";
             echo $clients_total_pages["puslapiu_skaicius"];
             echo "</p>";
 

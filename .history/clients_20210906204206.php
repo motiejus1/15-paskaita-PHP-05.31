@@ -257,16 +257,10 @@ if(isset($_GET["ID"])) {
         //FLOOR - grindys = 15.6 = 15
         //CEILING - lubos = 15.1 = 16
         //visa klientu skaiciu: 391/30 = puslapiu skaicius
-        if(isset($_GET["search"]) && !empty($_GET["search"])) {
-            $page_filtering = "klientai.vardas LIKE '%".$search."%' OR klientai.pavarde 
-            LIKE '%".$search."%' AND $filtravimas";
-        } else {
-            $page_filtering = $filtravimas;
-        }
-        
         $sql = "SELECT CEILING(COUNT(ID)/$clients_count) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai 
         FROM klientai
-        WHERE $page_filtering
+        WHERE klientai.vardas LIKE '%".$search."%' OR klientai.pavarde 
+        LIKE '%".$search."%' AND $filtravimas
         ";
         $result = $conn->query($sql);  
         //Kiek irasu grazina sita uzklausa?

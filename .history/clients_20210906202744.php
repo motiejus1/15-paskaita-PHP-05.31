@@ -216,12 +216,11 @@ if(isset($_GET["ID"])) {
         $sql = "SELECT klientai.ID, klientai.vardas, klientai.pavarde, klientai_teises.pavadinimas FROM klientai 
         LEFT JOIN klientai_teises ON klientai_teises.reiksme = klientai.teises_id 
         
-        WHERE klientai.vardas LIKE '%".$search."%' OR klientai.pavarde 
-        LIKE '%".$search."%' AND $filtravimas
-        ORDER BY $rikiuoti_pagal $rikiavimas
-        LIMIT $page_limit , $clients_count 
-        ";
-        
+        WHERE klientai.vardas LIKE '%".$search."%' OR klientai_teises.pavadinimas 
+        LIKE '%".$search."%'
+        ORDER BY klientai.ID $rikiavimas";
+            LIMIT $page_limit , $clients_count 
+
     }
 
     $result = $conn->query($sql); // uzklausos vykdymas
@@ -257,16 +256,9 @@ if(isset($_GET["ID"])) {
         //FLOOR - grindys = 15.6 = 15
         //CEILING - lubos = 15.1 = 16
         //visa klientu skaiciu: 391/30 = puslapiu skaicius
-        if(isset($_GET["search"]) && !empty($_GET["search"])) {
-            $page_filtering = "klientai.vardas LIKE '%".$search."%' OR klientai.pavarde 
-            LIKE '%".$search."%' AND $filtravimas";
-        } else {
-            $page_filtering = $filtravimas;
-        }
-        
         $sql = "SELECT CEILING(COUNT(ID)/$clients_count) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai 
         FROM klientai
-        WHERE $page_filtering
+        WHERE $filtravimas
         ";
         $result = $conn->query($sql);  
         //Kiek irasu grazina sita uzklausa?

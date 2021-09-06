@@ -266,7 +266,7 @@ if(isset($_GET["ID"])) {
         
         $sql = "SELECT CEILING(COUNT(ID)/$clients_count) AS puslapiu_skaicius, COUNT(ID) AS viso_klientai 
         FROM klientai
-        WHERE $page_filtering
+        WHERE 
         ";
         $result = $conn->query($sql);  
         //Kiek irasu grazina sita uzklausa?
